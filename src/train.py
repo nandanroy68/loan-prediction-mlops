@@ -9,7 +9,7 @@ import joblib
 warnings.filterwarnings('ignore')
 
 # 2. Read Data (Removed schema=True to fix the read_csv error)
-credit_df = pd.read_csv(r"D:\OneDrive - Coforge Limited\Documents\mlops_loan_default\data\credit_train.csv", header=0, sep=',')
+credit_df = pd.read_csv("./data/credit_train.csv", header=0, sep=',')
 
 # 3. Data Processing & Cleansing
 credit_df['Months since last delinquent'] = credit_df['Months since last delinquent'].fillna(0)
@@ -71,7 +71,7 @@ clf_tree_best = DecisionTreeClassifier(ccp_alpha = 0.001, criterion = 'gini',
 clf_tree_best.fit(X_train, Y_train)
 
 joblib.dump(X_test, "./data/x_test_sample.csv")
- 
+
 joblib.dump(clf_tree_best, "./model/loan_default.pkl")
  
 print("\nModel Saved Successfully!")
